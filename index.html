@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Tab</title>
+    <!-- No external icon library needed -->
     <style>
         /* Catppuccin Latte Color Palette */
         :root {
@@ -106,10 +107,10 @@
 
         .quick-links {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 1rem;
             width: 100%;
-            max-width: 580px;
+            max-width: 800px;
             margin-top: 1rem;
         }
 
@@ -151,8 +152,12 @@
         }
 
         .link-icon {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             color: var(--subtext0);
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .link-label {
@@ -173,13 +178,19 @@
             margin-bottom: 2rem;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 800px) {
             .quick-links {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
             
             .clock {
                 font-size: 3.5rem;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .quick-links {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -198,21 +209,58 @@
         </div>
         
         <div class="quick-links">
-            <a href="https://www.google.com" class="link-card" style="--accent-color: var(--blue);">
-                <div class="link-icon">G</div>
-                <div class="link-label">Google</div>
+            <!-- Row 1 -->
+            <a href="https://archive.org/" class="link-card" style="--accent-color: var(--mauve);">
+                <div class="link-icon">📚</div>
+                <div class="link-label">Archive</div>
             </a>
-            <a href="https://www.github.com" class="link-card" style="--accent-color: var(--mauve);">
-                <div class="link-icon">GH</div>
+            <a href="https://solo.bodleian.ox.ac.uk/discovery/search?vid=44OXF_INST:SOLO&lang=en" class="link-card" style="--accent-color: var(--blue);">
+                <div class="link-icon">🔍</div>
+                <div class="link-label">SOLO</div>
+            </a>
+            
+            <!-- Row 2 -->
+            <a href="https://catppuccin.com/" class="link-card" style="--accent-color: var(--pink);">
+                <div class="link-icon">🎨</div>
+                <div class="link-label">Catppuccin</div>
+            </a>
+            <a href="https://claude.ai/chats" class="link-card" style="--accent-color: var(--lavender);">
+                <div class="link-icon">✨</div>
+                <div class="link-label">Claude</div>
+            </a>
+            <a href="https://github.com" class="link-card" style="--accent-color: var(--teal);">
+                <div class="link-icon">🐙</div>
                 <div class="link-label">GitHub</div>
             </a>
-            <a href="https://www.youtube.com" class="link-card" style="--accent-color: var(--red);">
-                <div class="link-icon">YT</div>
+            <a href="https://scoop.sh/" class="link-card" style="--accent-color: var(--yellow);">
+                <div class="link-icon">🍦</div>
+                <div class="link-label">Scoop</div>
+            </a>
+            <a href="https://www.youtube.com/" class="link-card" style="--accent-color: var(--red);">
+                <div class="link-icon">📺</div>
                 <div class="link-label">YouTube</div>
             </a>
-            <a href="https://www.reddit.com" class="link-card" style="--accent-color: var(--orange);">
-                <div class="link-icon">R</div>
-                <div class="link-label">Reddit</div>
+            
+            <!-- Row 3 -->
+            <a href="https://docs.helix-editor.com/" class="link-card" style="--accent-color: var(--green);">
+                <div class="link-icon">🧬</div>
+                <div class="link-label">Helix</div>
+            </a>
+            <a href="https://docs.julialang.org/en/v1/" class="link-card" style="--accent-color: var(--peach);">
+                <div class="link-icon">💃</div>
+                <div class="link-label">Julia</div>
+            </a>
+            <a href="https://www.nushell.sh/" class="link-card" style="--accent-color: var(--sky);">
+                <div class="link-icon">🐚</div>
+                <div class="link-label">Nushell</div>
+            </a>
+            <a href="https://typst.app/docs/" class="link-card" style="--accent-color: var(--sapphire);">
+                <div class="link-icon">⌨️</div>
+                <div class="link-label">Typst</div>
+            </a>
+            <a href="https://yazi-rs.github.io/" class="link-card" style="--accent-color: var(--flamingo);">
+                <div class="link-icon">📁</div>
+                <div class="link-label">Yazi</div>
             </a>
         </div>
     </div>
@@ -238,11 +286,11 @@
             document.getElementById('date').textContent = dateString;
             
             // Greeting
-            let greeting = "Good morning";
+            let greeting = "Good morning, Shem.";
             if (hours >= 12 && hours < 18) {
-                greeting = "Good afternoon";
+                greeting = "Good afternoon, Shem.";
             } else if (hours >= 18) {
-                greeting = "Good evening";
+                greeting = "Good evening, Shem.";
             }
             document.getElementById('greeting').textContent = greeting;
         }
