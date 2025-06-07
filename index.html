@@ -4,36 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Tab</title>
-    <!-- No external icon library needed -->
     <style>
         /* Catppuccin Latte Color Palette */
         :root {
-            --rosewater: #dc8a78;
-            --flamingo: #dd7878;
-            --pink: #ea76cb;
-            --mauve: #8839ef;
-            --red: #d20f39;
-            --maroon: #e64553;
-            --peach: #fe640b;
-            --yellow: #df8e1d;
-            --green: #40a02b;
-            --teal: #179299;
-            --sky: #04a5e5;
-            --sapphire: #209fb5;
-            --blue: #1e66f5;
-            --lavender: #7287fd;
-            --text: #4c4f69;
-            --subtext1: #5c5f77;
-            --subtext0: #6c6f85;
-            --overlay2: #7c7f93;
-            --overlay1: #8c8fa1;
-            --overlay0: #9ca0b0;
-            --surface2: #acb0be;
-            --surface1: #bcc0cc;
-            --surface0: #ccd0da;
-            --base: #eff1f5;
-            --mantle: #e6e9ef;
-            --crust: #dce0e8;
+            --rosewater: rgba(220, 138, 120, 1);
+            --flamingo: rgba(221, 120, 120, 1);
+            --pink: rgba(234, 118, 203, 1);
+            --mauve: rgba(136, 57, 239, 1);
+            --red: rgba(210, 15, 57, 1);
+            --maroon: rgba(230, 69, 83, 1);
+            --peach: rgba(254, 100, 11, 1);
+            --yellow: rgba(223, 142, 29, 1);
+            --green: rgba(64, 160, 43, 1);
+            --teal: rgba(23, 146, 153, 1);
+            --sky: rgba(4, 165, 229, 1);
+            --sapphire: rgba(32, 159, 181, 1);
+            --blue: rgba(30, 102, 245, 1);
+            --lavender: rgba(114, 135, 253, 1);
+            --text: rgba(76, 79, 105, 1);
+            --subtext1: rgba(92, 95, 119, 1);
+            --subtext0: rgba(108, 111, 133, 1);
+            --overlay2: rgba(124, 127, 147, 1);
+            --overlay1: rgba(140, 143, 161, 1);
+            --overlay0: rgba(156, 160, 176, 1);
+            --surface2: rgba(172, 176, 190, 1);
+            --surface1: rgba(188, 192, 204, 1);
+            --surface0: rgba(204, 208, 218, 1);
+            --base: rgba(239, 241, 245, 0.6);
+            --mantle: rgba(230, 233, 239, 1);
+            --crust: rgba(220, 224, 232, 1);
         }
 
         * {
@@ -44,14 +43,65 @@
         }
 
         body {
-            background-color: var(--base);
-            color: var(--text);
             height: 100vh;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background with subtle texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--lavender) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--yellow) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, var(--maroon) 0%, transparent 50%),
+                linear-gradient(135deg, var(--base) 0%, var(--mantle) 100%);
+            opacity: 0.6;
+            animation: subtle-shift 20s ease-in-out infinite;
+            z-index: -2;
+        }
+
+        /* Noise texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
+                radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 20px 20px, 25px 25px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes subtle-shift {
+            0%, 100% { transform: translateX(0) translateY(0) scale(1); }
+            25% { transform: translateX(-5px) translateY(-10px) scale(1.02); }
+            50% { transform: translateX(5px) translateY(5px) scale(0.98); }
+            75% { transform: translateX(-2px) translateY(8px) scale(1.01); }
+        }
+
+        /* Glass container */
+        .glass-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(239, 241, 245, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .container {
@@ -62,6 +112,11 @@
             flex-direction: column;
             align-items: center;
             gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+            height: 100vh;
+            justify-content: center;
+            margin: 0 auto;
         }
 
         .clock {
@@ -69,6 +124,7 @@
             font-weight: 300;
             color: var(--text);
             margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(76, 79, 105, 0.1);
         }
 
         .date {
@@ -87,7 +143,7 @@
         }
 
         .link-card {
-            background-color: var(--crust);
+            background: var(--base);
             border-radius: 10px;
             height: 80px;
             display: flex;
@@ -95,7 +151,7 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             gap: 0.5rem;
             position: relative;
             overflow: hidden;
@@ -108,15 +164,16 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background-color: var(--lavender);
+            background: linear-gradient(90deg, var(--lavender), var(--pink));
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s ease;
         }
 
         .link-card:hover {
-            background-color: var(--mantle);
+            background: var(--base);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(76, 79, 105, 0.15);
         }
 
         .link-card:hover::before {
@@ -130,11 +187,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            filter: drop-shadow(0 1px 2px rgba(76, 79, 105, 0.1));
         }
 
         .link-label {
             font-size: 0.875rem;
             color: var(--subtext1);
+            font-weight: 500;
         }
         
         footer {
@@ -142,12 +201,16 @@
             bottom: 1rem;
             font-size: 0.75rem;
             color: var(--overlay0);
+            z-index: 2;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .greeting {
             font-size: 1.5rem;
             color: var(--subtext0);
             margin-bottom: 2rem;
+            text-shadow: 0 1px 3px rgba(76, 79, 105, 0.1);
         }
 
         @media (max-width: 800px) {
@@ -168,6 +231,8 @@
     </style>
 </head>
 <body>
+    <div class="glass-container"></div>
+    
     <div class="container">
         <div style="text-align: center;">
             <div class="clock" id="clock">00:00</div>
@@ -178,55 +243,55 @@
         
         <div class="quick-links">
             <!-- Row 1 -->
-            <a href="https://archive.org/" class="link-card" style="--accent-color: var(--mauve);">
+            <a href="https://archive.org/" class="link-card">
                 <div class="link-icon">📚</div>
                 <div class="link-label">Archive</div>
             </a>
-            <a href="https://solo.bodleian.ox.ac.uk/discovery/search?vid=44OXF_INST:SOLO&lang=en" class="link-card" style="--accent-color: var(--blue);">
+            <a href="https://solo.bodleian.ox.ac.uk/discovery/search?vid=44OXF_INST:SOLO&lang=en" class="link-card">
                 <div class="link-icon">🔍</div>
                 <div class="link-label">SOLO</div>
             </a>
             
             <!-- Row 2 -->
-            <a href="https://catppuccin.com/" class="link-card" style="--accent-color: var(--pink);">
+            <a href="https://catppuccin.com/" class="link-card">
                 <div class="link-icon">🎨</div>
                 <div class="link-label">Catppuccin</div>
             </a>
-            <a href="https://claude.ai/chats" class="link-card" style="--accent-color: var(--lavender);">
+            <a href="https://claude.ai/chats" class="link-card">
                 <div class="link-icon">✨</div>
                 <div class="link-label">Claude</div>
             </a>
-            <a href="https://github.com" class="link-card" style="--accent-color: var(--teal);">
+            <a href="https://github.com" class="link-card">
                 <div class="link-icon">🐙</div>
                 <div class="link-label">GitHub</div>
             </a>
-            <a href="https://scoop.sh/" class="link-card" style="--accent-color: var(--yellow);">
+            <a href="https://scoop.sh/" class="link-card">
                 <div class="link-icon">🍦</div>
                 <div class="link-label">Scoop</div>
             </a>
-            <a href="https://www.youtube.com/" class="link-card" style="--accent-color: var(--red);">
+            <a href="https://www.youtube.com/" class="link-card">
                 <div class="link-icon">📺</div>
                 <div class="link-label">YouTube</div>
             </a>
             
             <!-- Row 3 -->
-            <a href="https://docs.helix-editor.com/" class="link-card" style="--accent-color: var(--green);">
+            <a href="https://docs.helix-editor.com/" class="link-card">
                 <div class="link-icon">🧬</div>
                 <div class="link-label">Helix</div>
             </a>
-            <a href="https://docs.julialang.org/en/v1/" class="link-card" style="--accent-color: var(--peach);">
+            <a href="https://docs.julialang.org/en/v1/" class="link-card">
                 <div class="link-icon">💃</div>
                 <div class="link-label">Julia</div>
             </a>
-            <a href="https://www.nushell.sh/" class="link-card" style="--accent-color: var(--sky);">
+            <a href="https://www.nushell.sh/" class="link-card">
                 <div class="link-icon">🐚</div>
                 <div class="link-label">Nushell</div>
             </a>
-            <a href="https://typst.app/docs/" class="link-card" style="--accent-color: var(--sapphire);">
+            <a href="https://typst.app/docs/" class="link-card">
                 <div class="link-icon">⌨️</div>
                 <div class="link-label">Typst</div>
             </a>
-            <a href="https://yazi-rs.github.io/" class="link-card" style="--accent-color: var(--flamingo);">
+            <a href="https://yazi-rs.github.io/" class="link-card">
                 <div class="link-icon">📁</div>
                 <div class="link-label">Yazi</div>
             </a>
