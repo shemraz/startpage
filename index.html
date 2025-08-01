@@ -1,332 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Tab</title>
-    <style>
-        /* Catppuccin Latte Color Palette */
-        :root {
-            --rosewater: rgba(220, 138, 120, 1);
-            --flamingo: rgba(221, 120, 120, 1);
-            --pink: rgba(234, 118, 203, 1);
-            --mauve: rgba(136, 57, 239, 1);
-            --red: rgba(210, 15, 57, 1);
-            --maroon: rgba(230, 69, 83, 1);
-            --peach: rgba(254, 100, 11, 1);
-            --yellow: rgba(223, 142, 29, 1);
-            --green: rgba(64, 160, 43, 1);
-            --teal: rgba(23, 146, 153, 1);
-            --sky: rgba(4, 165, 229, 1);
-            --sapphire: rgba(32, 159, 181, 1);
-            --blue: rgba(30, 102, 245, 1);
-            --lavender: rgba(114, 135, 253, 1);
-            --text: rgba(76, 79, 105, 1);
-            --subtext1: rgba(92, 95, 119, 1);
-            --subtext0: rgba(108, 111, 133, 1);
-            --overlay2: rgba(124, 127, 147, 1);
-            --overlay1: rgba(140, 143, 161, 1);
-            --overlay0: rgba(156, 160, 176, 1);
-            --surface2: rgba(172, 176, 190, 1);
-            --surface1: rgba(188, 192, 204, 1);
-            --surface0: rgba(204, 208, 218, 1);
-            --base: rgba(239, 241, 245, 0.6);
-            --mantle: rgba(230, 233, 239, 1);
-            --crust: rgba(220, 224, 232, 1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Tab</title>
+  <style>
+    /* Catppuccin Latte Color Palette */
+    :root {
+      --rosewater: rgba(220, 138, 120, 1);
+      --flamingo: rgba(221, 120, 120, 1);
+      --pink: rgba(234, 118, 203, 1);
+      --mauve: rgba(136, 57, 239, 1);
+      --red: rgba(210, 15, 57, 1);
+      --maroon: rgba(230, 69, 83, 1);
+      --peach: rgba(254, 100, 11, 1);
+      --yellow: rgba(223, 142, 29, 1);
+      --green: rgba(64, 160, 43, 1);
+      --teal: rgba(23, 146, 153, 1);
+      --sky: rgba(4, 165, 229, 1);
+      --sapphire: rgba(32, 159, 181, 1);
+      --blue: rgba(30, 102, 245, 1);
+      --lavender: rgba(114, 135, 253, 1);
+      --text: rgba(76, 79, 105, 1);
+      --subtext1: rgba(92, 95, 119, 1);
+      --subtext0: rgba(108, 111, 133, 1);
+      --overlay2: rgba(124, 127, 147, 1);
+      --overlay1: rgba(140, 143, 161, 1);
+      --overlay0: rgba(156, 160, 176, 1);
+      --surface2: rgba(172, 176, 190, 1);
+      --surface1: rgba(188, 192, 204, 1);
+      --surface0: rgba(204, 208, 218, 1);
+      --base: rgba(239, 241, 245, 0.6);
+      --mantle: rgba(230, 233, 239, 1);
+      --crust: rgba(220, 224, 232, 1);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Maple Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
 
-        body {
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
+    body {
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
 
-        /* Animated background with subtle texture */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, var(--lavender) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, var(--yellow) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, var(--maroon) 0%, transparent 50%),
-                linear-gradient(135deg, var(--base) 0%, var(--mantle) 100%);
-            opacity: 0.6;
-            animation: subtle-shift 20s ease-in-out infinite;
-            z-index: -2;
-        }
+    /* Animated background with subtle texture */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 20% 80%, var(--lavender) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--yellow) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, var(--maroon) 0%, transparent 50%),
+        linear-gradient(135deg, var(--base) 0%, var(--mantle) 100%);
+      opacity: 0.2;
+      animation: subtle-shift 20s ease-in-out infinite;
+      z-index: -2;
+    }
 
-        /* Noise texture overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
-                radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
-            background-size: 20px 20px, 25px 25px;
-            background-position: 0 0, 10px 10px;
-            opacity: 0.3;
-            z-index: -1;
-        }
+    /* Noise texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+      background-size: 20px 20px, 25px 25px;
+      background-position: 0 0, 10px 10px;
+      opacity: 0.6;
+      z-index: -1;
+    }
 
-        @keyframes subtle-shift {
-            0%, 100% { transform: translateX(0) translateY(0) scale(1); }
-            25% { transform: translateX(-5px) translateY(-10px) scale(1.02); }
-            50% { transform: translateX(5px) translateY(5px) scale(0.98); }
-            75% { transform: translateX(-2px) translateY(8px) scale(1.01); }
-        }
+    @keyframes subtle-shift {
 
-        /* Glass container */
-        .glass-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(239, 241, 245, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
+      0%,
+      100% {
+        transform: translateX(0) translateY(0) scale(1);
+      }
 
-        .container {
-            width: 100%;
-            max-width: 800px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2.5rem;
-            position: relative;
-            z-index: 1;
-            height: 100vh;
-            justify-content: center;
-            margin: 0 auto;
-        }
+      25% {
+        transform: translateX(-5px) translateY(-10px) scale(1.02);
+      }
 
-        .clock {
-            font-size: 5rem;
-            font-weight: 300;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 10px rgba(76, 79, 105, 0.1);
-        }
+      50% {
+        transform: translateX(5px) translateY(5px) scale(0.98);
+      }
 
-        .date {
-            font-size: 1rem;
-            color: var(--subtext1);
-            margin-bottom: 2rem;
-        }
+      75% {
+        transform: translateX(-2px) translateY(8px) scale(1.01);
+      }
+    }
 
-        .quick-links {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 1rem;
-            width: 100%;
-            max-width: 800px;
-            margin-top: 1rem;
-        }
+    /* Glass container */
+    .glass-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(239, 241, 245, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
 
-        .link-card {
-            background: var(--base);
-            border-radius: 10px;
-            height: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      justify-content: center;
+      margin: 0 auto;
+    }
 
-        .link-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--lavender), var(--pink));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
+    .clock {
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 10px rgba(76, 79, 105, 0.1);
+    }
 
-        .link-card:hover {
-            background: var(--base);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(76, 79, 105, 0.15);
-        }
+    .date {
+      font-size: 1rem;
+      color: var(--subtext1);
+      margin-bottom: 2rem;
+    }
 
-        .link-card:hover::before {
-            transform: scaleX(1);
-        }
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+      width: 100%;
+      max-width: 800px;
+      margin-top: 1rem;
+    }
 
-        .link-icon {
-            font-size: 1.75rem;
-            color: var(--subtext0);
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            filter: drop-shadow(0 1px 2px rgba(76, 79, 105, 0.1));
-        }
+    .link-card {
+      border-radius: 10px;
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .link-label {
-            font-size: 0.875rem;
-            color: var(--subtext1);
-            font-weight: 500;
-        }
-        
-        footer {
-            position: fixed;
-            bottom: 1rem;
-            font-size: 0.75rem;
-            color: var(--overlay0);
-            z-index: 2;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    .link-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--lavender), var(--pink));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
 
-        .greeting {
-            font-size: 1.5rem;
-            color: var(--subtext0);
-            margin-bottom: 2rem;
-            text-shadow: 0 1px 3px rgba(76, 79, 105, 0.1);
-        }
+    .link-card:hover {
+      background: var(--base);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(76, 79, 105, 0.15);
+    }
 
-        @media (max-width: 800px) {
-            .quick-links {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .clock {
-                font-size: 3.5rem;
-            }
-        }
-        
-        @media (max-width: 500px) {
-            .quick-links {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
+    .link-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .link-icon {
+      font-size: 1.75rem;
+      color: var(--subtext0);
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 1px 2px rgba(76, 79, 105, 0.1));
+    }
+
+    .link-label {
+      font-size: 0.875rem;
+      color: var(--subtext1);
+      font-weight: 500;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 1rem;
+      font-size: 0.75rem;
+      color: var(--overlay0);
+      z-index: 2;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .greeting {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--subtext1);
+      margin-bottom: 2rem;
+      text-shadow: 0 1px 3px rgba(76, 79, 105, 0.1);
+    }
+
+    @media (max-width: 800px) {
+      .quick-links {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .clock {
+        font-size: 3.5rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .quick-links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="glass-container"></div>
-    
-    <div class="container">
-        <div style="text-align: center;">
-            <div class="clock" id="clock">00:00</div>
-            <div class="date" id="date">Monday, January 1</div>
-        </div>
-        
-        <div class="greeting" id="greeting">Good morning</div>
-        
-        <div class="quick-links">
-            <!-- Row 1 -->
-            <a href="https://archive.org/" class="link-card">
-                <div class="link-icon">📚</div>
-                <div class="link-label">Archive</div>
-            </a>
-            <a href="https://solo.bodleian.ox.ac.uk/discovery/search?vid=44OXF_INST:SOLO&lang=en" class="link-card">
-                <div class="link-icon">🔍</div>
-                <div class="link-label">SOLO</div>
-            </a>
-            
-            <!-- Row 2 -->
-            <a href="https://catppuccin.com/" class="link-card">
-                <div class="link-icon">🎨</div>
-                <div class="link-label">Catppuccin</div>
-            </a>
-            <a href="https://claude.ai/chats" class="link-card">
-                <div class="link-icon">✨</div>
-                <div class="link-label">Claude</div>
-            </a>
-            <a href="https://github.com" class="link-card">
-                <div class="link-icon">🐙</div>
-                <div class="link-label">GitHub</div>
-            </a>
-            <a href="https://scoop.sh/" class="link-card">
-                <div class="link-icon">🍦</div>
-                <div class="link-label">Scoop</div>
-            </a>
-            <a href="https://www.youtube.com/" class="link-card">
-                <div class="link-icon">📺</div>
-                <div class="link-label">YouTube</div>
-            </a>
-            
-            <!-- Row 3 -->
-            <a href="https://docs.helix-editor.com/" class="link-card">
-                <div class="link-icon">🧬</div>
-                <div class="link-label">Helix</div>
-            </a>
-            <a href="https://docs.julialang.org/en/v1/" class="link-card">
-                <div class="link-icon">💃</div>
-                <div class="link-label">Julia</div>
-            </a>
-            <a href="https://www.nushell.sh/" class="link-card">
-                <div class="link-icon">🐚</div>
-                <div class="link-label">Nushell</div>
-            </a>
-            <a href="https://typst.app/docs/" class="link-card">
-                <div class="link-icon">⌨️</div>
-                <div class="link-label">Typst</div>
-            </a>
-            <a href="https://yazi-rs.github.io/" class="link-card">
-                <div class="link-icon">📁</div>
-                <div class="link-label">Yazi</div>
-            </a>
-        </div>
+  <div class="glass-container"></div>
+
+  <div class="container">
+    <div style="text-align: left;">
+      <div class="clock" id="clock">00:00</div>
+      <div class="date" id="date">Monday, January 1</div>
+      <div class="greeting" id="greeting">Good morning</div>
     </div>
-    
-    <script>
-        // Update clock
-        function updateClock() {
-            const now = new Date();
-            
-            // Time
-            let hours = now.getHours();
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const timeFormat = hours.toString().padStart(2, '0') + ':' + minutes;
-            document.getElementById('clock').textContent = timeFormat;
-            
-            // Date
-            const options = { weekday: 'long', month: 'long', day: 'numeric' };
-            const dateString = now.toLocaleDateString('en-GB', options);
-            document.getElementById('date').textContent = dateString;
-            
-            // Greeting
-            let greeting = "Good morning, Shem.";
-            if (hours >= 12 && hours < 18) {
-                greeting = "Good afternoon, Shem.";
-            } else if (hours >= 18) {
-                greeting = "Good evening, Shem.";
-            }
-            document.getElementById('greeting').textContent = greeting;
-        }
-        
-        // Initial call and set update interval
-        updateClock();
-        setInterval(updateClock, 1000);
-    </script>
+    <div class="quick-links">
+      <!-- Row 1 -->
+      <a href="https://archive.org/" class="link-card">
+        <div class="link-icon">📚</div>
+        <div class="link-label">Archive</div>
+      </a>
+      <a href="https://solo.bodleian.ox.ac.uk/discovery/search?vid=44OXF_INST:SOLO&lang=en" class="link-card">
+        <div class="link-icon">🔍</div>
+        <div class="link-label">SOLO</div>
+      </a>
+
+      <!-- Row 2 -->
+      <a href="https://catppuccin.com/" class="link-card">
+        <div class="link-icon">🎨</div>
+        <div class="link-label">Catppuccin</div>
+      </a>
+      <a href="https://claude.ai/chats" class="link-card">
+        <div class="link-icon">✨</div>
+        <div class="link-label">Claude</div>
+      </a>
+      <a href="https://github.com" class="link-card">
+        <div class="link-icon">🐙</div>
+        <div class="link-label">GitHub</div>
+      </a>
+      <a href="https://scoop.sh/" class="link-card">
+        <div class="link-icon">🍦</div>
+        <div class="link-label">Scoop</div>
+      </a>
+      <a href="https://www.youtube.com/" class="link-card">
+        <div class="link-icon">📺</div>
+        <div class="link-label">YouTube</div>
+      </a>
+
+      <!-- Row 3 -->
+      <a href="https://docs.helix-editor.com/" class="link-card">
+        <div class="link-icon">🧬</div>
+        <div class="link-label">Helix</div>
+      </a>
+      <a href="https://docs.julialang.org/en/v1/" class="link-card">
+        <div class="link-icon">💃</div>
+        <div class="link-label">Julia</div>
+      </a>
+      <a href="https://www.nushell.sh/" class="link-card">
+        <div class="link-icon">🐚</div>
+        <div class="link-label">Nushell</div>
+      </a>
+      <a href="https://typst.app/docs/" class="link-card">
+        <div class="link-icon">⌨️</div>
+        <div class="link-label">Typst</div>
+      </a>
+      <a href="https://yazi-rs.github.io/" class="link-card">
+        <div class="link-icon">📁</div>
+        <div class="link-label">Yazi</div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Update clock
+    function updateClock() {
+      const now = new Date();
+
+      // Time
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const timeFormat = hours.toString().padStart(2, '0') + ':' + minutes;
+      document.getElementById('clock').textContent = timeFormat;
+
+      // Date
+      const options = {weekday: 'long', month: 'long', day: 'numeric'};
+      const dateString = now.toLocaleDateString('en-GB', options);
+      document.getElementById('date').textContent = dateString;
+
+      // Greeting
+      let greeting = "Good morning, Shem.";
+      if (hours >= 12 && hours < 18) {
+        greeting = "Good afternoon, Shem.";
+      } else if (hours >= 18) {
+        greeting = "Good evening, Shem.";
+      }
+      document.getElementById('greeting').textContent = greeting;
+    }
+
+    // Initial call and set update interval
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
 </body>
+
 </html>
