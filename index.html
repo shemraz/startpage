@@ -6,34 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Tab</title>
   <style>
-    /* Catppuccin Latte Color Palette */
+    /* Rose Pine Dawn Color Palette */
     :root {
-      --rosewater: rgba(220, 138, 120, 1);
-      --flamingo: rgba(221, 120, 120, 1);
-      --pink: rgba(234, 118, 203, 1);
-      --mauve: rgba(136, 57, 239, 1);
-      --red: rgba(210, 15, 57, 1);
-      --maroon: rgba(230, 69, 83, 1);
-      --peach: rgba(254, 100, 11, 1);
-      --yellow: rgba(223, 142, 29, 1);
-      --green: rgba(64, 160, 43, 1);
-      --teal: rgba(23, 146, 153, 1);
-      --sky: rgba(4, 165, 229, 1);
-      --sapphire: rgba(32, 159, 181, 1);
-      --blue: rgba(30, 102, 245, 1);
-      --lavender: rgba(114, 135, 253, 1);
-      --text: rgba(76, 79, 105, 1);
-      --subtext1: rgba(92, 95, 119, 1);
-      --subtext0: rgba(108, 111, 133, 1);
-      --overlay2: rgba(124, 127, 147, 1);
-      --overlay1: rgba(140, 143, 161, 1);
-      --overlay0: rgba(156, 160, 176, 1);
-      --surface2: rgba(172, 176, 190, 1);
-      --surface1: rgba(188, 192, 204, 1);
-      --surface0: rgba(204, 208, 218, 1);
-      --base: rgba(239, 241, 245, 0.6);
-      --mantle: rgba(230, 233, 239, 1);
-      --crust: rgba(220, 224, 232, 1);
+      --base: rgba(250, 244, 237, 0.6);
+      --surface: rgba(255, 250, 243, 1);
+      --overlay: rgba(242, 233, 222, 1);
+      --muted: rgba(152, 147, 165, 1);
+      --subtle: rgba(121, 117, 147, 1);
+      --text: rgba(87, 82, 121, 1);
+      --love: rgba(180, 99, 122, 1);
+      --gold: rgba(234, 157, 52, 1);
+      --rose: rgba(215, 130, 126, 1);
+      --pine: rgba(40, 105, 131, 1);
+      --foam: rgba(86, 148, 159, 1);
+      --iris: rgba(144, 122, 169, 1);
+      --highlight-low: rgba(242, 233, 222, 0.8);
+      --highlight-med: rgba(220, 215, 186, 0.5);
+      --highlight-high: rgba(206, 202, 205, 0.8);
     }
 
     * {
@@ -59,10 +48,10 @@
       width: 100%;
       height: 100%;
       background:
-        radial-gradient(circle at 20% 80%, var(--lavender) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, var(--yellow) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, var(--maroon) 0%, transparent 50%),
-        linear-gradient(135deg, var(--base) 0%, var(--mantle) 100%);
+        radial-gradient(circle at 20% 80%, var(--iris) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--gold) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, var(--love) 0%, transparent 50%),
+        linear-gradient(135deg, var(--base) 0%, var(--surface) 100%);
       opacity: 0.2;
       animation: subtle-shift 20s ease-in-out infinite;
       z-index: -2;
@@ -114,7 +103,7 @@
       height: 100%;
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      background: rgba(239, 241, 245, 0.7);
+      background: rgba(250, 244, 237, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
@@ -138,12 +127,12 @@
       font-weight: 300;
       color: var(--text);
       margin-bottom: 0.5rem;
-      text-shadow: 0 2px 10px rgba(76, 79, 105, 0.1);
+      text-shadow: 0 2px 10px rgba(87, 82, 121, 0.1);
     }
 
     .date {
       font-size: 1rem;
-      color: var(--subtext1);
+      color: var(--subtle);
       margin-bottom: 2rem;
     }
 
@@ -177,16 +166,16 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background: linear-gradient(90deg, var(--lavender), var(--pink));
+      background: linear-gradient(90deg, var(--iris), var(--love));
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s ease;
     }
 
     .link-card:hover {
-      background: var(--base);
+      background: var(--highlight-low);
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(76, 79, 105, 0.15);
+      box-shadow: 0 8px 25px rgba(87, 82, 121, 0.15);
     }
 
     .link-card:hover::before {
@@ -195,17 +184,17 @@
 
     .link-icon {
       font-size: 1.75rem;
-      color: var(--subtext0);
+      color: var(--muted);
       height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 1px 2px rgba(76, 79, 105, 0.1));
+      filter: drop-shadow(0 1px 2px rgba(87, 82, 121, 0.1));
     }
 
     .link-label {
       font-size: 0.875rem;
-      color: var(--subtext1);
+      color: var(--subtle);
       font-weight: 500;
     }
 
@@ -213,7 +202,7 @@
       position: fixed;
       bottom: 1rem;
       font-size: 0.75rem;
-      color: var(--overlay0);
+      color: var(--muted);
       z-index: 2;
       left: 50%;
       transform: translateX(-50%);
@@ -222,9 +211,9 @@
     .greeting {
       font-size: 1.25rem;
       font-style: italic;
-      color: var(--subtext1);
+      color: var(--subtle);
       margin-bottom: 2rem;
-      text-shadow: 0 1px 3px rgba(76, 79, 105, 0.1);
+      text-shadow: 0 1px 3px rgba(87, 82, 121, 0.1);
     }
 
     @media (max-width: 800px) {
